@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,6 +19,7 @@ public class GameManager : Singleton<GameManager>
     private void ShowLoseUI()
     {
         loseUI.SetActive(true);
+        UpdateBestScore();
     }
 
     public void RepeatGame()
@@ -35,5 +37,11 @@ public class GameManager : Singleton<GameManager>
     {
         points++;
         scoreText.text = points.ToString();
+    }
+
+    private void UpdateBestScore()
+    {
+        int tmp = PlayerPrefs.GetInt("BestScore");
+        loseUI.GetComponentInChildren<TextMeshProUGUI>().text = $"{tmp}";
     }
 }

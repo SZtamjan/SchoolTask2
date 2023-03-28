@@ -8,4 +8,7 @@ public class GameOver : MonoBehaviour
     {
         GameManager.Instance.OnGameOver();
     }
+
+
+
 }
