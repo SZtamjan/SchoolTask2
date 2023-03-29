@@ -8,6 +8,7 @@ public class CoinCollected : MonoBehaviour
     {
         GameManager.Instance.UpdateScore();
         gameObject.SetActive(false);
+        GameManager.Instance.gameObject.GetComponent<SaveProgress>().BestScoreChecker();
     }
 
 }
