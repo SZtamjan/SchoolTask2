@@ -9,15 +9,27 @@ public class GameManager : Singleton<GameManager>
 {
     public GameObject loseUI;
     public GameObject audioObject;
+    public GameObject audioScreenObject;
+    public GameObject audioSettings;
+    public GameObject goBack;
     public int points = 0;
     public TextMeshProUGUI scoreText;
     
     public void StartGame()
     {
         Time.timeScale = 1;
-        audioObject.gameObject.GetComponent<SoundManager>().gameSong.Play();
+        
     }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
     private void ShowLoseUI()
     {
         loseUI.SetActive(true);
@@ -49,5 +61,21 @@ public class GameManager : Singleton<GameManager>
     {
         int tmp = PlayerPrefs.GetInt("BestScore");
         loseUI.GetComponentInChildren<TextMeshProUGUI>().text = $"{tmp}";
+    }
+
+    public void ShowAudioSettings()
+    {
+        audioScreenObject.SetActive(true);
+        goBack.SetActive(true);
+        audioSettings.SetActive(false);
+        PauseGame();
+    }
+
+    public void HideAudioSettings()
+    {
+        audioScreenObject.SetActive(false);
+        goBack.SetActive(false);
+        audioSettings.SetActive(true);
+        ResumeGame();
     }
 }
